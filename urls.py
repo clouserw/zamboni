@@ -47,6 +47,9 @@ urlpatterns = patterns('',
     # Downloads.
     ('^downloads/', include(versions.urls.download_patterns)),
 
+    # Localizer Pages
+    ('', include('localizers.urls')),
+
     # Users
     ('', include('users.urls')),
 

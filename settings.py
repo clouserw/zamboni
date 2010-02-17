@@ -99,8 +99,9 @@ AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES',
     'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
     'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE',
-    'tr', 'uk', 'vi', 'zh-CN', 'zh-TW',
+    'uk', 'vi', 'zh-CN', 'zh-TW',
 )
+HIDDEN_LANGUAGES = ('cy', 'sr', 'sr-Latn', 'tr')
 
 
 def lazy_langs():
@@ -337,6 +338,7 @@ INSTALLED_APPS = (
     'files',
     'jingo_minify',
     'market',
+    'localizers',
     'pages',
     'perf',
     'product_details',
@@ -709,6 +711,9 @@ MINIFY_BUNDLES = {
             'js/lib/syntaxhighlighter/shBrushVb.js',
             'js/lib/syntaxhighlighter/shBrushXml.js',
             'js/zamboni/files.js',
+        ),
+        'zamboni/localizers': (
+            'js/zamboni/localizers.js',
         ),
         'zamboni/mobile': (
             'js/lib/jquery-1.5.js',
