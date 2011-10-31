@@ -17,6 +17,7 @@ import sharing.views
 from sharing.forms import ShareForm
 from sharing.helpers import sharing_box
 from sharing import DIGG, FACEBOOK
+import tower
 
 
 class SharingHelpersTestCase(test.TestCase):
@@ -111,3 +112,28 @@ def test_share_form():
     eq_(form.cleaned_data['description'], 'x' * 250 + '...')
     assert form.cleaned_data['url'].startswith('http'), (
         "Unexpected: URL not absolute")
+
+
+def test_get_services_in_en_locale():
+    tower.activate('en-us')
+    # The order is the same as the order of sharing.SERVICES_LIST
+    l = ['digg', 'facebook', 'delicious', 'myspace', 'friendfeed', 'twitter']
+    assert(l == [s.shortname for s in sharing.get_services()])
+
+
+def test_get_services_in_ja_locale():
+
+    testo = sharing.LOCALSERVICE1
+    testo.shortname = 'translated-localservice1'
+
+    with patch.object(sharing, 'LOCALSERVICE1', testo):
+        tower.activate('ja')
+        expected = [
+            'digg',
+            'facebook',
+            'delicious',
+            'myspace',
+            'friendfeed',
+            'twitter',
+            'translated-localservice1']
+        assert(expected == [s.shortname for s in sharing.get_services()])
