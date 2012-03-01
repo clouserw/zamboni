@@ -574,6 +574,12 @@ def profile(request, user_id):
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 
+    data['review_perms'] = {}  # See reviews.views.review_list for more
+    # TODO allow deletion by reviewers; bug 731908
+    if (own_profile
+        or acl.action_allowed(request, 'Admin', 'EditAnyUser')):
+            data['review_perms'] = dict(can_delete=True)
+
     return jingo.render(request, 'users/profile.html', data)
 
 
