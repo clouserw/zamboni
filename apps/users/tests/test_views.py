@@ -1129,13 +1129,12 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(r.attr('href'), delete_url)
 
         # Editors get the Delete Review link.
-        # XXX TODO FIXME - this is a broken test, bug 731908
-        #self.client.login(username='editor@mozilla.com', password='password')
-        #r = self.client.get(reverse('users.profile', args=[999]))
-        #doc = pq(r.content)('#reviews')
-        #r = doc('#review-218207 .item-actions a.delete-review')
-        #eq_(r.length, 1)
-        #eq_(r.attr('href'), delete_url)
+        self.client.login(username='editor@mozilla.com', password='password')
+        r = self.client.get(reverse('users.profile', args=[999]))
+        doc = pq(r.content)('#reviews')
+        r = doc('#review-218207 .item-actions a.delete-review')
+        eq_(r.length, 1)
+        eq_(r.attr('href'), delete_url)
 
         # Author gets the Delete Review link.
         self.client.login(username='regular@mozilla.com', password='password')

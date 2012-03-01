@@ -575,8 +575,8 @@ def profile(request, user_id):
         data['abuse_form'] = AbuseForm(request=request)
 
     data['review_perms'] = {}  # See reviews.views.review_list for more
-    # TODO allow deletion by reviewers; bug 731908
     if (own_profile
+        or acl.check_reviewer(request)
         or acl.action_allowed(request, 'Admin', 'EditAnyUser')):
             data['review_perms'] = dict(can_delete=True)
 

@@ -112,6 +112,7 @@ def flag(request, addon, review_id):
 def delete(request, addon, review_id):
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     if not (acl.action_allowed(request, 'Editors', 'DeleteReview')
+            or acl.check_reviewer(request)
             or review.user_id == request.amo_user.id):
         return http.HttpResponseForbidden()
     review.delete()
