@@ -872,23 +872,6 @@ CACHE_COUNT_TIMEOUT = 60
 # To enable pylibmc compression (in bytes)
 PYLIBMC_MIN_COMPRESS_LEN = 0  # disabled
 
-# External tools.
-SPHINX_INDEXER = 'indexer'
-SPHINX_SEARCHD = 'searchd'
-SPHINX_CONFIG_PATH = path('configs/sphinx/sphinx.conf')
-SPHINX_CATALOG_PATH = TMP_PATH + '/data/sphinx'
-SPHINX_LOG_PATH = TMP_PATH + '/log/searchd'
-SPHINX_HOST = '127.0.0.1'
-SPHINX_PORT = 3312
-SPHINXQL_PORT = 3307
-
-TEST_SPHINX_PORT = 3412
-TEST_SPHINXQL_PORT = 3407
-TEST_SPHINX_CATALOG_PATH = TMP_PATH + '/test/data/sphinx'
-TEST_SPHINX_LOG_PATH = TMP_PATH + '/test/log/searchd'
-
-SPHINX_TIMEOUT = 1
-
 JAVA_BIN = '/usr/bin/java'
 
 # Add-on download settings.

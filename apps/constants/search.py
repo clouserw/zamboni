@@ -1,3 +1,5 @@
+import amo
+
 # These two dicts are mapping between language codes in zamboni and language
 # analyzers in elasticsearch.
 #
@@ -55,3 +57,9 @@ SEARCH_LANGUAGE_TO_ANALYZER = {}
 for analyzer, languages in SEARCH_ANALYZER_MAP.items():
     for language in languages:
         SEARCH_LANGUAGE_TO_ANALYZER[language] = analyzer
+
+
+# Used in the API to know what to return.  Perhaps replaced by ES at some point?
+SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_LITE,
+                       amo.STATUS_LITE_AND_NOMINATED)
+

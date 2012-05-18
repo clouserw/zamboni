@@ -34,7 +34,7 @@ from amo.utils import JSONEncoder
 from addons.models import Addon, CompatOverride
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
-from search.client import SEARCHABLE_STATUSES
+from constants.search import SEARCHABLE_STATUSES
 from search.views import name_query
 from versions.compare import version_int
 

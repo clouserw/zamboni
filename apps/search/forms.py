@@ -27,8 +27,6 @@ collection_sort_by = (
     ('all', _lazy(u'Most popular all time')),
     ('rating', _lazy(u'Highest Rated')),
     ('created', _lazy(u'Newest')),
-)
-es_collection_sort_by = collection_sort_by + (
     ('updated', _lazy(u'Recently Updated')),
     ('name', _lazy(u'Name')),
 )
@@ -211,9 +209,6 @@ class SecondarySearchForm(forms.Form):
 
     def __init__(self, *args, **kw):
         super(SecondarySearchForm, self).__init__(*args, **kw)
-        if waffle.switch_is_active('replace-sphinx'):
-            # This adds the "Name" sort option for ES results.
-            self.fields['sort'].choices = es_collection_sort_by
 
     def clean_pp(self):
         d = self.cleaned_data['pp']
